@@ -119,7 +119,7 @@ const materialsData = {
     },
     {
       name: "HDPE (Detergent & Milk Jugs)",
-      image: "public/images/hdpe_bottles.jpg",
+      image: "public/images/detergent.png",
       description: "High-Density Polyethylene from milk jugs, shampoo bottles, and detergent containers. A robust plastic that is highly valued for repurposing."
     },
     {
