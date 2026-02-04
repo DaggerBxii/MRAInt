@@ -13,22 +13,6 @@ document.querySelectorAll(".nav-link").forEach((link) => {
           block: "start",
         })
       }
-
-      // Add ripple effect to navigation links
-      const ripple = document.createElement("span")
-      const rect = this.getBoundingClientRect()
-      const size = Math.max(rect.width, rect.height)
-      const x = e.clientX - rect.left - size / 2
-      const y = e.clientY - rect.top - size / 2
-
-      ripple.style.width = ripple.style.height = size + "px"
-      ripple.style.left = x + "px"
-      ripple.style.top = y + "px"
-      ripple.classList.add("ripple")
-
-      this.appendChild(ripple)
-
-      setTimeout(() => ripple.remove(), 600)
     }
   })
 })
@@ -43,38 +27,25 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       entry.target.classList.add("visible")
-
-      // Animate gallery items when section becomes visible
-      if (entry.target.querySelector(".gallery")) {
-        const galleryItems = entry.target.querySelectorAll(".gallery-item")
-        galleryItems.forEach((item, index) => {
-          setTimeout(() => {
-            item.style.animation = `scaleIn 0.6s ease forwards`
-          }, index * 100)
-        })
-      }
     }
   })
 }, observerOptions)
 
-// Observe all sections with fade-section class
 document.querySelectorAll(".fade-section").forEach((section) => {
   observer.observe(section)
 })
 
-// Parallax effect for header
+// Parallax header and nav scroll effect
 window.addEventListener("scroll", () => {
   const scrolled = window.pageYOffset
   const header = document.querySelector("header")
   const nav = document.querySelector("nav")
 
-  // Parallax header
   if (header) {
     header.style.transform = `translateY(${scrolled * 0.5}px)`
     header.style.opacity = 1 - scrolled / 500
   }
 
-  // Add shadow to nav on scroll
   if (nav) {
     if (scrolled > 100) {
       nav.classList.add("scrolled")
@@ -84,198 +55,193 @@ window.addEventListener("scroll", () => {
   }
 })
 
-// Gallery image hover effect with tilt
-document.querySelectorAll(".gallery-item").forEach((item) => {
-  item.addEventListener("mousemove", (e) => {
-    const rect = item.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
+// Materials Slideshow Data - COMPREHENSIVE LIST
+const materialsData = {
+  "Paper Recycling": [
+    {
+      name: "Old Corrugated Cardboard (OCC)",
+      image: "public/images/occ_slide.png",
+      description: "We collect and process high-grade corrugated cardboard boxes and packaging. These are baled to meet strict export-quality standards for global paper mills."
+    },
+    {
+      name: "White Ledger & Sorted Office Paper",
+      image: "public/images/white_ledger_slide.png",
+      description: "Premium office waste including letterheads, copy paper, and notebook paper. We ensure these materials are sorted for maximum brightness and recycling yield."
+    },
+    {
+      name: "Mixed Paper & Magazines",
+      image: "public/images/mixed_paper_slide.png",
+      description: "A combination of various paper grades such as magazines, mailers, and catalogs. This versatile stream is processed for use in cardboard and tissue manufacturing."
+    },
+    {
+      name: "Newsprint & Newspapers",
+      image: "public/images/newspaper.png",
+      description: "Standard newspapers and newsprint materials. We collect and process these for repurposing into new paper products and insulation materials."
+    },
+    {
+      name: "Kraft Paper",
+      image: "public/images/kraft.png",
+      description: "Durable brown kraft paper used in bags and industrial wrapping. Its strong fibers make it a valuable commodity in the recycling market."
+    }
+  ],
+  "Metal Recycling": [
+    {
+      name: "Ferrous Metals (Steel & Iron)",
+      image: "public/images/metal_recycling.png",
+      description: "Handling all types of scrap steel and iron. From industrial offcuts to structural beams, we process ferrous materials for heavy manufacturing reuse."
+    },
+    {
+      name: "Aluminum (Cans & Sheets)",
+      image: "public/images/aluminum_cans_slide.png",
+      description: "Recycling beverage cans and sheet frames. Aluminum is infinitely recyclable, saving up to 95% of the energy needed to produce it from scratch."
+    },
+    {
+      name: "Copper (Wires, Pipes, Motors)",
+      image: "public/images/copper.png",
+      description: "Processing various copper grades including industrial wiring, plumbing pipes, and electric motors. Copper is a critical material for modern infrastructure."
+    },
+    {
+      name: "Brass & Lead",
+      image: "public/images/brass.png",
+      description: "Safe handling of brass fixtures, valves, and hardware, alongside lead batteries and industrial scrap. We ensure all hazardous materials are handled responsibly."
+    },
+    {
+      name: "Stainless Steel & Zinc",
+      image: "public/images/zinc.png",
+      description: "Managing kitchen and automotive stainless steel parts, plus zinc roofing and die-cast items. We sort by alloy to ensure the highest recovery value."
+    }
+  ],
+  "Plastic Recycling": [
+    {
+      name: "PET (Water & Beverage Bottles)",
+      image: "public/images/plastic_recycling.png",
+      description: "Polyethylene Terephthalate is the most common plastic for beverage containers. We process it into clean flakes and bales for new products."
+    },
+    {
+      name: "HDPE (Detergent & Milk Jugs)",
+      image: "public/images/plastic_recycling.png",
+      description: "High-Density Polyethylene from milk jugs, shampoo bottles, and detergent containers. A robust plastic that is highly valued for repurposing."
+    },
+    {
+      name: "PVC & LDPE (Pipes & Films)",
+      image: "public/images/plastic_recycling.png",
+      description: "Managing PVC construction pipes and LDPE wrapping films or plastic bags. We use specialized sorting to ensure these complex plastics are recycled correctly."
+    },
+    {
+      name: "PP, PS & Mixed Plastics",
+      image: "public/images/plastic_recycling.png",
+      description: "Handling Polypropylene (caps, food containers), Polystyrene (styrofoam), and assorted non-hazardous mixed plastics for comprehensive waste diversion."
+    }
+  ]
+};
 
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
+// Modal and Slideshow Logic
+const modal = document.getElementById("material-modal");
+const modalContent = document.getElementById("slideshow-container");
+const dotsContainer = document.getElementById("slide-dots");
+const closeBtn = document.querySelector(".close-modal");
+const prevBtn = document.getElementById("prev-slide");
+const nextBtn = document.getElementById("next-slide");
 
-    const rotateX = (y - centerY) / 10
-    const rotateY = (centerX - x) / 10
+let currentSlideIndex = 0;
+let currentSlidesData = [];
 
-    item.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`
-  })
+function openSlideshow(categoryName) {
+  currentSlidesData = materialsData[categoryName] || [];
+  if (currentSlidesData.length === 0) return;
 
-  item.addEventListener("mouseleave", () => {
-    item.style.transform = "perspective(1000px) rotateX(0) rotateY(0) scale(1)"
-  })
-})
-
-// Material cards stagger animation
-const materialCards = document.querySelectorAll(".material-card")
-
-const materialsObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const cards = entry.target.querySelectorAll(".material-card")
-        cards.forEach((card, index) => {
-          setTimeout(() => {
-            card.style.opacity = "1"
-            card.style.transform = "translateX(0) scale(1)"
-
-            card.style.animation = "cardEntrance 0.8s ease forwards, pulse 2s ease-in-out infinite"
-          }, index * 300)
-        })
-      }
-    })
-  },
-  { threshold: 0.2 },
-)
-
-// Observe materials section
-const materialsSection = document.querySelector("#materials")
-if (materialsSection) {
-  materialsObserver.observe(materialsSection)
+  currentSlideIndex = 0;
+  renderSlides();
+  modal.style.display = "flex";
+  setTimeout(() => modal.classList.add("visible"), 10);
+  document.body.style.overflow = "hidden"; // Prevent scroll
 }
 
-// Set initial state for material cards
-materialCards.forEach((card) => {
-  card.style.opacity = "0"
-  card.style.transform = "translateX(-100px) scale(0.9)"
-  card.style.transition = "all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)"
-})
+function renderSlides() {
+  modalContent.innerHTML = "";
+  dotsContainer.innerHTML = "";
 
-const style = document.createElement("style")
-style.textContent = `
-  @keyframes cardEntrance {
-    0% {
-      opacity: 0;
-      transform: translateX(-100px) scale(0.9) rotateY(-15deg);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0) scale(1) rotateY(0);
-    }
+  currentSlidesData.forEach((slide, index) => {
+    const slideEl = document.createElement("div");
+    slideEl.className = `slide ${index === 0 ? "active" : ""}`;
+    slideEl.innerHTML = `
+      <div class="slide-image">
+        <img src="${slide.image}" alt="${slide.name}">
+      </div>
+      <div class="slide-info">
+        <h3>${slide.name}</h3>
+        <p>${slide.description}</p>
+      </div>
+    `;
+    modalContent.appendChild(slideEl);
+
+    const dot = document.createElement("span");
+    dot.className = `dot ${index === 0 ? "active" : ""}`;
+    dot.onclick = () => showSlide(index);
+    dotsContainer.appendChild(dot);
+  });
+}
+
+function showSlide(index) {
+  const slides = document.querySelectorAll(".slide");
+  const dots = document.querySelectorAll(".dot");
+
+  if (index >= slides.length) index = 0;
+  if (index < 0) index = slides.length - 1;
+
+  slides.forEach(s => s.classList.remove("active"));
+  dots.forEach(d => d.classList.remove("active"));
+
+  slides[index].classList.add("active");
+  dots[index].classList.add("active");
+  currentSlideIndex = index;
+}
+
+prevBtn.onclick = () => showSlide(currentSlideIndex - 1);
+nextBtn.onclick = () => showSlide(currentSlideIndex + 1);
+
+closeBtn.onclick = function () {
+  modal.classList.remove("visible");
+  setTimeout(() => modal.style.display = "none", 400);
+  document.body.style.overflow = "auto";
+};
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    closeBtn.onclick();
   }
-  
-  @keyframes pulse {
-    0%, 100% {
-      box-shadow: 0 4px 15px rgba(255, 112, 67, 0.15);
-    }
-    50% {
-      box-shadow: 0 8px 30px rgba(255, 87, 34, 0.25);
-    }
-  }
-  
-  @keyframes shimmer {
-    0% {
-      background-position: -200% center;
-    }
-    100% {
-      background-position: 200% center;
-    }
-  }
-`
-document.head.appendChild(style)
+};
 
-materialCards.forEach((card) => {
-  // Add shimmer effect on hover
-  card.addEventListener("mouseenter", () => {
-    card.style.backgroundSize = "200% 100%"
-    card.style.backgroundImage =
-      "linear-gradient(135deg, #ffccbc 0%, #ffab91 30%, #ff8a65 50%, #ffab91 70%, #ffccbc 100%)"
-    card.style.animation = "shimmer 2s linear infinite, pulse 2s ease-in-out infinite"
-  })
+// Handle Card Clicks
+document.querySelectorAll(".material-card").forEach(card => {
+  card.style.cursor = "pointer";
+  card.addEventListener("click", () => {
+    const title = card.querySelector("h3").textContent;
+    openSlideshow(title);
+  });
+});
 
-  card.addEventListener("mouseleave", () => {
-    card.style.backgroundSize = "100% 100%"
-    card.style.backgroundImage = "linear-gradient(135deg, #ffe0b2 0%, #ffccbc 100%)"
-    card.style.animation = "pulse 2s ease-in-out infinite"
-  })
+// Prevent buttons from triggering the slideshow
+document.querySelectorAll(".material-btn").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+});
 
-  card.addEventListener("click", (e) => {
-    const ripple = document.createElement("div")
-    const rect = card.getBoundingClientRect()
-    const size = Math.max(rect.width, rect.height)
-    const x = e.clientX - rect.left - size / 2
-    const y = e.clientY - rect.top - size / 2
-
-    ripple.style.cssText = `
-      position: absolute;
-      width: ${size}px;
-      height: ${size}px;
-      left: ${x}px;
-      top: ${y}px;
-      background: radial-gradient(circle, rgba(255, 112, 67, 0.4) 0%, transparent 70%);
-      border-radius: 50%;
-      transform: scale(0);
-      animation: rippleEffect 0.8s ease-out;
-      pointer-events: none;
-    `
-
-    const rippleStyle = document.createElement("style")
-    rippleStyle.textContent = `
-      @keyframes rippleEffect {
-        to {
-          transform: scale(2);
-          opacity: 0;
-        }
-      }
-    `
-    document.head.appendChild(rippleStyle)
-
-    card.appendChild(ripple)
-    setTimeout(() => ripple.remove(), 800)
-  })
-})
-
-// CEO image interaction
+// CEO image interaction (from original script)
 const ceoImage = document.querySelector(".ceo-image")
 if (ceoImage) {
   ceoImage.addEventListener("mousemove", (e) => {
     const rect = ceoImage.getBoundingClientRect()
     const x = e.clientX - rect.left - rect.width / 2
     const y = e.clientY - rect.top - rect.height / 2
-
     const rotateX = y / 20
     const rotateY = -x / 20
-
     ceoImage.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`
   })
-
   ceoImage.addEventListener("mouseleave", () => {
     ceoImage.style.transform = "rotateX(0) rotateY(0) scale(1)"
   })
 }
 
-// Add scroll progress indicator
-const createScrollIndicator = () => {
-  const indicator = document.createElement("div")
-  indicator.style.cssText = `
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #7c4dff, #00bcd4, #4caf50, #ff7043);
-    background-size: 200% 100%;
-    z-index: 9999;
-    transition: width 0.1s ease;
-    box-shadow: 0 2px 10px rgba(124, 77, 255, 0.5);
-    animation: shimmer 3s linear infinite;
-  `
-  document.body.appendChild(indicator)
-
-  window.addEventListener("scroll", () => {
-    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
-    const scrolled = (window.pageYOffset / windowHeight) * 100
-    indicator.style.width = scrolled + "%"
-  })
-}
-
-createScrollIndicator()
-
-// Entrance animation on page load
-window.addEventListener("load", () => {
-  document.body.style.opacity = "0"
-  setTimeout(() => {
-    document.body.style.transition = "opacity 0.5s ease"
-    document.body.style.opacity = "1"
-  }, 100)
-})
-
-console.log("Scripts loaded successfully.")
+console.log("MRA International - Scripts initialized.");
