@@ -60,27 +60,27 @@ const materialsData = {
   "Paper Recycling": [
     {
       name: "Old Corrugated Cardboard (OCC)",
-      image: "public/images/generated_occ.svg",
+      image: "public/images/occ_slide.png",
       description: "We collect and process high-grade corrugated cardboard boxes and packaging. These are baled to meet strict export-quality standards for global paper mills."
     },
     {
       name: "White Ledger & Sorted Office Paper",
-      image: "public/images/generated_white_ledger.svg",
+      image: "public/images/white_ledger_slide.png",
       description: "Premium office waste including letterheads, copy paper, and notebook paper. We ensure these materials are sorted for maximum brightness and recycling yield."
     },
     {
       name: "Mixed Paper & Magazines",
-      image: "public/images/generated_mixed_paper.svg",
+      image: "public/images/mixed_paper_slide.png",
       description: "A combination of various paper grades such as magazines, mailers, and catalogs. This versatile stream is processed for use in cardboard and tissue manufacturing."
     },
     {
       name: "Newsprint & Newspapers",
-      image: "public/images/generated_newspaper.svg",
+      image: "public/images/newspaper.png",
       description: "Standard newspapers and newsprint materials. We collect and process these for repurposing into new paper products and insulation materials."
     },
     {
       name: "Kraft Paper",
-      image: "public/images/generated_kraft.svg",
+      image: "public/images/kraft.png",
       description: "Durable brown kraft paper used in bags and industrial wrapping. Its strong fibers make it a valuable commodity in the recycling market."
     }
   ],
@@ -114,22 +114,22 @@ const materialsData = {
   "Plastic Recycling": [
     {
       name: "PET (Water & Beverage Bottles)",
-      image: "public/images/plastic_recycling.png",
+      image: "public/images/pet_bottles.jpg",
       description: "Polyethylene Terephthalate is the most common plastic for beverage containers. We process it into clean flakes and bales for new products."
     },
     {
       name: "HDPE (Detergent & Milk Jugs)",
-      image: "public/images/plastic_recycling.png",
+      image: "public/images/hdpe_bottles.jpg",
       description: "High-Density Polyethylene from milk jugs, shampoo bottles, and detergent containers. A robust plastic that is highly valued for repurposing."
     },
     {
       name: "PVC & LDPE (Pipes & Films)",
-      image: "public/images/plastic_recycling.png",
+      image: "public/images/pvc_pipes.jpg",
       description: "Managing PVC construction pipes and LDPE wrapping films or plastic bags. We use specialized sorting to ensure these complex plastics are recycled correctly."
     },
     {
       name: "PP, PS & Mixed Plastics",
-      image: "public/images/plastic_recycling.png",
+      image: "public/images/mixed_plastics.jpg",
       description: "Handling Polypropylene (caps, food containers), Polystyrene (styrofoam), and assorted non-hazardous mixed plastics for comprehensive waste diversion."
     }
   ]
@@ -147,9 +147,15 @@ let currentSlideIndex = 0;
 let currentSlidesData = [];
 
 function openSlideshow(categoryName) {
-  // Trim and case-insensitive check for category name
   const cleanCategoryName = categoryName.trim();
-  currentSlidesData = materialsData[cleanCategoryName] || [];
+  console.log("Opening slideshow for:", cleanCategoryName);
+
+  // Robust case-insensitive matching
+  const matchingKey = Object.keys(materialsData).find(
+    key => key.toLowerCase() === cleanCategoryName.toLowerCase()
+  );
+
+  currentSlidesData = materialsData[matchingKey || cleanCategoryName] || [];
 
   if (currentSlidesData.length === 0) {
     console.error("No data found for category:", cleanCategoryName);
@@ -222,7 +228,8 @@ window.onclick = function (event) {
 document.querySelectorAll(".material-card").forEach(card => {
   card.style.cursor = "pointer";
   card.addEventListener("click", () => {
-    const title = card.querySelector("h3").textContent;
+    const titleEl = card.querySelector("h3");
+    const title = titleEl ? titleEl.innerText : "";
     openSlideshow(title);
   });
 });
