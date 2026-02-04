@@ -21,7 +21,12 @@ const eventData = {
       "MRA International Ltd. was a proud participant of the ISRI 2023 Conference & Exposition. This event had over 6,600 attendees from 58 difference countires and all 50 states of the U.S. The conference provided insight that was crucial to the industry, discussing topics such as the recycling state in China at that time, industry trends and its future, and involved various networking and educational sessions.",
     images: ["public/images/isri1.cr2", "public/images/isri2.cr2", "public/images/isri3.cr2"],
   },
-}
+};
+
+// NOTE: The images above use .cr2 (Canon RAW) format. 
+// Most browsers cannot display .cr2 files directly.
+// It is recommended to convert these to .jpg or .png and update the paths above.
+
 
 // Intersection Observer for timeline items
 const timelineObserver = new IntersectionObserver(
@@ -154,7 +159,7 @@ const fadeSectionObserver = new IntersectionObserver(
       }
     })
   },
-  { threshold: 0.15 },
+  { threshold: 0.1 },
 )
 
 document.querySelectorAll(".fade-section").forEach((section) => {

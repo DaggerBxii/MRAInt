@@ -19,8 +19,8 @@ document.querySelectorAll(".nav-link").forEach((link) => {
 
 // Intersection Observer for fade-in animations
 const observerOptions = {
-  threshold: 0.15,
-  rootMargin: "0px 0px -50px 0px",
+  threshold: 0.1,
+  rootMargin: "0px 0px -20px 0px",
 }
 
 const observer = new IntersectionObserver((entries) => {
@@ -60,27 +60,27 @@ const materialsData = {
   "Paper Recycling": [
     {
       name: "Old Corrugated Cardboard (OCC)",
-      image: "public/images/occ_slide.png",
+      image: "public/images/generated_occ.svg",
       description: "We collect and process high-grade corrugated cardboard boxes and packaging. These are baled to meet strict export-quality standards for global paper mills."
     },
     {
       name: "White Ledger & Sorted Office Paper",
-      image: "public/images/white_ledger_slide.png",
+      image: "public/images/generated_white_ledger.svg",
       description: "Premium office waste including letterheads, copy paper, and notebook paper. We ensure these materials are sorted for maximum brightness and recycling yield."
     },
     {
       name: "Mixed Paper & Magazines",
-      image: "public/images/mixed_paper_slide.png",
+      image: "public/images/generated_mixed_paper.svg",
       description: "A combination of various paper grades such as magazines, mailers, and catalogs. This versatile stream is processed for use in cardboard and tissue manufacturing."
     },
     {
       name: "Newsprint & Newspapers",
-      image: "public/images/newspaper.png",
+      image: "public/images/generated_newspaper.svg",
       description: "Standard newspapers and newsprint materials. We collect and process these for repurposing into new paper products and insulation materials."
     },
     {
       name: "Kraft Paper",
-      image: "public/images/kraft.png",
+      image: "public/images/generated_kraft.svg",
       description: "Durable brown kraft paper used in bags and industrial wrapping. Its strong fibers make it a valuable commodity in the recycling market."
     }
   ],
@@ -147,8 +147,14 @@ let currentSlideIndex = 0;
 let currentSlidesData = [];
 
 function openSlideshow(categoryName) {
-  currentSlidesData = materialsData[categoryName] || [];
-  if (currentSlidesData.length === 0) return;
+  // Trim and case-insensitive check for category name
+  const cleanCategoryName = categoryName.trim();
+  currentSlidesData = materialsData[cleanCategoryName] || [];
+
+  if (currentSlidesData.length === 0) {
+    console.error("No data found for category:", cleanCategoryName);
+    return;
+  }
 
   currentSlideIndex = 0;
   renderSlides();
@@ -169,7 +175,7 @@ function renderSlides() {
         <img src="${slide.image}" alt="${slide.name}">
       </div>
       <div class="slide-info">
-        <h3>${slide.name}</h3>
+        <h2>${slide.name}</h2>
         <p>${slide.description}</p>
       </div>
     `;
