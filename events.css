@@ -72,10 +72,12 @@
 }
 
 @keyframes pulse-marker {
+
   0%,
   100% {
     box-shadow: 0 0 0 4px rgba(26, 152, 114, 0.2), 0 4px 15px rgba(26, 152, 114, 0.4);
   }
+
   50% {
     box-shadow: 0 0 0 8px rgba(26, 152, 114, 0.3), 0 6px 25px rgba(26, 152, 114, 0.6);
   }
@@ -206,6 +208,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -228,6 +231,7 @@
     transform: translateY(100px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -322,6 +326,28 @@
     text-align: left;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+
+  .timeline-section {
+    padding: 2.5rem 1.5rem;
+    margin: 1.5rem 1rem;
+    border-radius: 15px;
+  }
+
+  .timeline-container {
+    padding: 1rem 0;
+  }
+
+  .timeline-item {
+    margin: 2rem 0;
+  }
+
+  .timeline-content h3 {
+    font-size: 1.4rem;
+  }
+
+  .timeline-content p {
+    font-size: 1rem;
   }
 
   .modal-body {

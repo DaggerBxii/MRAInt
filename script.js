@@ -257,4 +257,35 @@ if (ceoImage) {
   })
 }
 
+// Mobile Menu Toggle Logic
+const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
+const navLinksContainer = document.querySelector("nav ul");
+const navLinks = document.querySelectorAll("nav ul li a");
+
+if (mobileMenuToggle && navLinksContainer) {
+  mobileMenuToggle.addEventListener("click", () => {
+    mobileMenuToggle.classList.toggle("active");
+    navLinksContainer.classList.toggle("active");
+    document.body.classList.toggle("menu-open");
+  });
+
+  // Close menu when a link is clicked
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenuToggle.classList.remove("active");
+      navLinksContainer.classList.remove("active");
+      document.body.classList.remove("menu-open");
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!navLinksContainer.contains(e.target) && !mobileMenuToggle.contains(e.target) && navLinksContainer.classList.contains("active")) {
+      mobileMenuToggle.classList.remove("active");
+      navLinksContainer.classList.remove("active");
+      document.body.classList.remove("menu-open");
+    }
+  });
+}
+
 console.log("MRA International - Scripts initialized.");
