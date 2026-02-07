@@ -267,6 +267,10 @@ if (mobileMenuToggle && navLinksContainer) {
     mobileMenuToggle.classList.toggle("active");
     navLinksContainer.classList.toggle("active");
     document.body.classList.toggle("menu-open");
+    
+    // Update ARIA attributes
+    const isExpanded = mobileMenuToggle.classList.contains("active");
+    mobileMenuToggle.setAttribute("aria-expanded", isExpanded);
   });
 
   // Close menu when a link is clicked
@@ -275,6 +279,9 @@ if (mobileMenuToggle && navLinksContainer) {
       mobileMenuToggle.classList.remove("active");
       navLinksContainer.classList.remove("active");
       document.body.classList.remove("menu-open");
+      
+      // Update ARIA attributes
+      mobileMenuToggle.setAttribute("aria-expanded", false);
     });
   });
 
@@ -284,7 +291,37 @@ if (mobileMenuToggle && navLinksContainer) {
       mobileMenuToggle.classList.remove("active");
       navLinksContainer.classList.remove("active");
       document.body.classList.remove("menu-open");
+      
+      // Update ARIA attributes
+      mobileMenuToggle.setAttribute("aria-expanded", false);
     }
+  });
+}
+
+// Contact Form Handling
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent default form submission
+    
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+    
+    // Basic validation
+    if (!name || !email || !message) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+    
+    // In a real implementation, you would send the data to a server here
+    // For now, we'll just show a success message
+    alert(`Thank you ${name}! Your message has been sent. We'll get back to you soon.`);
+    
+    // Reset the form
+    contactForm.reset();
   });
 }
 
