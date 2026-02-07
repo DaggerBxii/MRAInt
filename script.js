@@ -164,8 +164,7 @@ function openSlideshow(categoryName) {
 
   currentSlideIndex = 0;
   renderSlides();
-  modal.style.display = "flex";
-  setTimeout(() => modal.classList.add("visible"), 10);
+  modal.classList.add("visible");
   document.body.style.overflow = "hidden"; // Prevent scroll
 }
 
@@ -214,13 +213,13 @@ nextBtn.onclick = () => showSlide(currentSlideIndex + 1);
 
 closeBtn.onclick = function () {
   modal.classList.remove("visible");
-  setTimeout(() => modal.style.display = "none", 400);
   document.body.style.overflow = "auto";
 };
 
 window.onclick = function (event) {
   if (event.target == modal) {
-    closeBtn.onclick();
+    modal.classList.remove("visible");
+    document.body.style.overflow = "auto";
   }
 };
 

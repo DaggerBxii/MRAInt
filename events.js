@@ -75,9 +75,9 @@ viewDetailsBtns.forEach((btn) => {
         gallery.appendChild(img)
       })
 
-      // Show modal
-      modal.classList.add("active")
-      document.body.style.overflow = "hidden"
+      // Smoothly show modal with proper scrollbar handling
+      document.body.style.overflow = "hidden";
+      modal.classList.add("active");
 
       // Add ripple effect
       const ripple = document.createElement("div")
@@ -107,23 +107,23 @@ viewDetailsBtns.forEach((btn) => {
 
 // Close modal
 closeModalBtn.addEventListener("click", () => {
-  modal.classList.remove("active")
-  document.body.style.overflow = "auto"
+  modal.classList.remove("active");
+  document.body.style.overflow = "auto";
 })
 
 // Close modal when clicking outside
 modal.addEventListener("click", (e) => {
   if (e.target === modal) {
-    modal.classList.remove("active")
-    document.body.style.overflow = "auto"
+    modal.classList.remove("active");
+    document.body.style.overflow = "auto";
   }
 })
 
 // Close modal with Escape key
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && modal.classList.contains("active")) {
-    modal.classList.remove("active")
-    document.body.style.overflow = "auto"
+    modal.classList.remove("active");
+    document.body.style.overflow = "auto";
   }
 })
 

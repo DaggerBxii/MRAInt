@@ -186,7 +186,6 @@
 
 /* Event Modal */
 .event-modal {
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -196,9 +195,14 @@
   backdrop-filter: blur(10px);
   z-index: 10000;
   animation: fadeIn 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .event-modal.active {
+  opacity: 1;
+  visibility: visible;
   display: flex;
   justify-content: center;
   align-items: center;

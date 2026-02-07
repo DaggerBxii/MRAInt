@@ -1035,7 +1035,6 @@ footer {
 
 /* Modal Styles */
 .modal {
-  display: none;
   position: fixed;
   z-index: 2000;
   left: 0;
@@ -1046,14 +1045,16 @@ footer {
   background-color: rgba(13, 77, 77, 0.9);
   backdrop-filter: blur(8px);
   opacity: 0;
-  transition: opacity 0.4s ease;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 
 .modal.visible {
+  opacity: 1;
+  visibility: visible;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 1;
 }
 
 .modal-content {
