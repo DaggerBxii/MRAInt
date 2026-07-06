@@ -1,20 +1,36 @@
 // Event data with details
 const eventData = {
-  1: {
+  1:{
+    title: "ReMA 2026 Convention & Exposition",
+    date: "April 14- 16, 2026 @San Diego, CA, U.S.A",
+    description:
+      "As the premier global gathering for the recycling materials industry, ReMA 2026 united thousands of professionals from across the supply chain in San Diego. MRA International engaged with international suppliers and buyers of ferrous and non-ferrous metals, paper, and plastics, while attending forward-looking sessions on circular economy policy, commodity market trends, and processing innovations. The exposition floor showcased the latest sorting, shredding, and recovery technologies, reinforcing MRA's dedication to responsible material stewardship and global trade.",
+    images: ["public/images/rema-2026/rema1.jpeg", "public/images/rema-2026/rema2.jpeg", "public/images/rema-2026/rema3.jpeg"],
+
+  },
+  2:{
+    title: "Plastics Recycling Conference 2026",
+    date: "February 23 - 25, 2026 @San Diego, CA, U.S.A",
+    description:
+      "The Plastics Recycling Conference 2026, organized by Resource Recycling Inc., brought together industry leaders, policymakers, and technology innovators in San Diego to advance the future of plastics circularity. MRA International participated in deep-dive sessions covering extended producer responsibility (EPR) frameworks, advancements in mechanical and chemical recycling, and strategies to improve post-consumer resin quality. The event provided invaluable networking opportunities with global partners and fresh perspectives on how to scale sustainable plastics recovery in an evolving regulatory landscape.",
+    images: ["public/images/prc-2026/prc1.jpeg", "public/images/prc-2026/prc2.jpeg", "public/images/prc-2026/prc3.jpeg"],
+
+  },
+  3: {
     title: "ReMA 2025 Convention & Exposition",
     date: "May 12 - 15, 2025 @San Diego, CA, U.S.A",
     description:
       "As the current largest recycling-materials industry event in the world, Rema Convention & Exposition 2025 brought together nearly 7,000 industry professionals in the City of San Diego. MRA International attended to gain a better sense on how recycled materials strengthen manufacturing sustainability and innovation. Over the four days duration of the event, our team connected with international supplies and buyers of paper, metal and plastic recyclables, and attend expert-led sessions on emerging trends, as well as explored cutting-edge equipment and technology for the recycling industry. This event reaffirmed our commitment to maintain global standards and material sourcing, processing and export.",
     images: ["public/images/rema1.cr2", "public/images/rema2.cr2", "public/images/rema3.cr2"],
   },
-  2: {
+  4: {
     title: "Plastics Recycling Conference 2024",
     date: "March 25 - 27, 2024 @Grapine, TX , U.S.A",
     description:
       "Hosted by Resource Recycling Inc, the Plastics Recycling Conference 2024 was a large premier event focused on enhancing the business, policy and technology associated with plastics recycling. It had a emphasis on tackling the challenges and utilizing opportunities in the plastic recycling industry, having discussions under the themes of policy and regulation, market and economics, technology and infrastructure and design for recyclability. These discussions were held by world-leading experts in the field. MRA International Ltd. was proud to be a participant of this event, gaining insight and knowledge that will help us improve our plastic recycling processes and contribute to a more sustainable future.",
     images: ["public/images/psc1.cr2", "public/images/psc2.cr2", "public/images/psc3.cr2"],
   },
-  3: {
+  5: {
     title: "ISRI 2023 Conference & Exposition",
     date: "April 17 - 20, 2023 @Music City Center, Nashville, TN, U.S.A",
     description:
