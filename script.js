@@ -87,7 +87,7 @@ const materialsData = {
   "Metal Recycling": [
     {
       name: "Ferrous Metals (Steel & Iron)",
-      image: "public/images/metal_recycling.png",
+      image: "public/images/ferrous_metals.png",
       description: "Handling all types of scrap steel and iron. From industrial offcuts to structural beams, we process ferrous materials for heavy manufacturing reuse."
     },
     {
