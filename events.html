@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,13 +11,13 @@
     name="description"
     content="Explore MRA International Limited's events timeline, featuring recycling industry conventions and plastics recycling conferences."
   >
-  <meta name="theme-color" content="#0c5066">
+  <meta name="theme-color" content="#174C38">
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="events.css?v=2.0">
+  <link rel="stylesheet" href="style.css?v=1.2">
+  <link rel="stylesheet" href="events.css?v=2.1">
   <link rel="icon" type="image/png" href="public/images/favicon.png">
 
-  <!-- Open Graph / Social Media -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Events Timeline | MRA International Limited">
   <meta
     property="og:description"
@@ -36,11 +36,12 @@
   >
   <meta name="twitter:image" content="https://mraintltd.com/public/images/icon.png">
 
-  <!-- Show timeline content when JavaScript is unavailable -->
+  <!-- Keep content visible when JavaScript is disabled -->
   <noscript>
     <style>
       .fade-section,
-      .timeline-item {
+      .timeline-item,
+      .fade-in {
         opacity: 1 !important;
         transform: none !important;
       }
@@ -48,7 +49,7 @@
   </noscript>
 </head>
 
-<body>
+<body class="events-page">
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- Header -->
@@ -66,43 +67,40 @@
     </div>
   </header>
 
+  <!-- Navigation -->
+  <nav class="sticky-nav" aria-label="Main navigation">
+    <div class="nav-container">
+      <button
+        class="mobile-menu-toggle"
+        type="button"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="event-navigation"
+      >
+        <span class="bar" aria-hidden="true"></span>
+        <span class="bar" aria-hidden="true"></span>
+        <span class="bar" aria-hidden="true"></span>
+      </button>
+
+      <ul class="nav-links" id="event-navigation">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="index.html#purpose" class="nav-link">Purpose</a></li>
+        <li><a href="index.html#materials" class="nav-link">Our Materials</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
   <!-- Main Content -->
   <main id="main-content">
 
-    <!-- Navigation -->
-    <nav class="sticky-nav" aria-label="Main navigation">
-      <div class="nav-container">
-
-        <button
-          class="mobile-menu-toggle"
-          type="button"
-          aria-label="Toggle navigation menu"
-          aria-expanded="false"
-          aria-controls="event-navigation"
-        >
-          <span class="bar" aria-hidden="true"></span>
-          <span class="bar" aria-hidden="true"></span>
-          <span class="bar" aria-hidden="true"></span>
-        </button>
-
-        <ul class="nav-links" id="event-navigation">
-          <li><a href="index.html" class="nav-link">Home</a></li>
-          <li><a href="index.html#purpose" class="nav-link">Purpose</a></li>
-          <li><a href="index.html#materials" class="nav-link">Our Materials</a></li>
-          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-        </ul>
-
-      </div>
-    </nav>
-
-    <!-- Events Timeline -->
     <section
       class="timeline-section fade-section"
       aria-label="MRA International events timeline"
     >
       <div class="timeline-container">
 
-        <!-- Event 1: ReMA 2026 -->
+        <!-- Event 1 -->
         <article class="timeline-item" data-event="1">
           <div class="timeline-marker" aria-hidden="true"></div>
 
@@ -114,7 +112,6 @@
             </div>
 
             <h3>ReMA 2026 Convention &amp; Exposition</h3>
-
             <p>
               Exploring developments in recycled materials, global commodity
               markets, recycling technology, and the circular economy.
@@ -131,7 +128,7 @@
           </div>
         </article>
 
-        <!-- Event 2: Plastics Recycling Conference 2026 -->
+        <!-- Event 2 -->
         <article class="timeline-item" data-event="2">
           <div class="timeline-marker" aria-hidden="true"></div>
 
@@ -143,7 +140,6 @@
             </div>
 
             <h3>Plastics Recycling Conference 2026</h3>
-
             <p>
               Examining plastics recovery, recycling infrastructure,
               industry policy, and innovations in recycled materials.
@@ -160,7 +156,7 @@
           </div>
         </article>
 
-        <!-- Event 3: ReMA 2025 -->
+        <!-- Event 3 -->
         <article class="timeline-item" data-event="3">
           <div class="timeline-marker" aria-hidden="true"></div>
 
@@ -172,7 +168,6 @@
             </div>
 
             <h3>ReMA 2025 Convention &amp; Exposition</h3>
-
             <p>
               Learning about recycled commodity markets, international trade,
               sustainability, and advances in recycling technology.
@@ -189,7 +184,7 @@
           </div>
         </article>
 
-        <!-- Event 4: Plastics Recycling Conference 2024 -->
+        <!-- Event 4 -->
         <article class="timeline-item" data-event="4">
           <div class="timeline-marker" aria-hidden="true"></div>
 
@@ -201,7 +196,6 @@
             </div>
 
             <h3>Plastics Recycling Conference 2024</h3>
-
             <p>
               Reviewing the business, policy, infrastructure, and technology
               shaping plastics recycling and material recovery.
@@ -218,7 +212,7 @@
           </div>
         </article>
 
-        <!-- Event 5: ISRI 2023 -->
+        <!-- Event 5 -->
         <article class="timeline-item" data-event="5">
           <div class="timeline-marker" aria-hidden="true"></div>
 
@@ -230,7 +224,6 @@
             </div>
 
             <h3>ISRI 2023 Convention &amp; Exposition</h3>
-
             <p>
               Exploring recycling industry trends, international market
               developments, educational sessions, and professional networking.
@@ -261,7 +254,6 @@
       tabindex="-1"
     >
       <div class="modal-content">
-
         <button
           class="close-modal"
           type="button"
@@ -272,15 +264,10 @@
 
         <div class="modal-body">
           <h2 id="modalTitle"></h2>
-
           <div class="modal-date" id="modalDate"></div>
-
           <div class="modal-description" id="modalDescription"></div>
-
-          <!-- Contact details are inserted by events.js -->
           <div class="modal-gallery" id="modalGallery"></div>
         </div>
-
       </div>
     </div>
 
@@ -319,9 +306,7 @@
           <a href="tel:+18763916676">+1 (876) 391-6676</a>
         </p>
 
-        <p>
-          Address: 8 St. Lucia Crescent, The Hub, Kingston, Jamaica
-        </p>
+        <p>Address: 8 St. Lucia Crescent, The Hub, Kingston, Jamaica</p>
       </div>
 
     </div>
@@ -331,7 +316,8 @@
     </div>
   </footer>
 
-  <script src="events.js"></script>
+  <script src="events.js?v=2.1"></script>
 </body>
 
 </html>
+```
