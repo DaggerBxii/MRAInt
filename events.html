@@ -1,27 +1,42 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Events Timeline - MRA International Limited</title>
+
+  <title>Events Timeline | MRA International Limited</title>
+  <meta
+    name="description"
+    content="Explore MRA International Limited's events timeline, featuring recycling industry conventions and plastics recycling conferences."
+  >
+  <meta name="theme-color" content="#0c5066">
+
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="events.css">
   <link rel="icon" type="image/png" href="public/images/favicon.png">
-  
-  <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:title" content="Events Timeline - MRA International Limited">
-  <meta property="og:description" content="Explore MRA International Limited's participation in key recycling industry events.">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="Events Timeline | MRA International Limited">
+  <meta
+    property="og:description"
+    content="Explore recycling industry conventions and plastics recycling conferences relevant to MRA International Limited."
+  >
   <meta property="og:image" content="https://mraintltd.com/public/images/icon.png">
   <meta property="og:url" content="https://mraintltd.com/events.html">
   <meta property="og:type" content="website">
-  
-  <!-- Twitter Card Meta Tags -->
+
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Events Timeline - MRA International Limited">
-  <meta name="twitter:description" content="Explore MRA International Limited's participation in key recycling industry events.">
+  <meta name="twitter:title" content="Events Timeline | MRA International Limited">
+  <meta
+    name="twitter:description"
+    content="Explore MRA International Limited's recycling industry events timeline."
+  >
   <meta name="twitter:image" content="https://mraintltd.com/public/images/icon.png">
-  
+
+  <!-- Show timeline content when JavaScript is unavailable -->
   <noscript>
     <style>
       .fade-section,
@@ -40,113 +55,246 @@
   <header class="parallax-header">
     <div class="header-content fade-in">
       <h1>Events Timeline</h1>
-      <p>Our goal in environmental sustainability.</p>
-      <img src="public/images/icon.png" height="200px" alt="MRA International Limited Logo" class="header-logo" loading="eager">
+      <p>Connecting with the recycling industry and advancing environmental sustainability.</p>
+      <img
+        src="public/images/icon.png"
+        height="200"
+        alt="MRA International Limited logo"
+        class="header-logo"
+        loading="eager"
+      >
     </div>
   </header>
-  
+
+  <!-- Main Content -->
   <main id="main-content">
 
-  <!-- Navigation -->
-  <nav class="sticky-nav">
-    <div class="nav-container">
-      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-        <span class="bar" aria-hidden="true"></span>
-        <span class="bar" aria-hidden="true"></span>
-        <span class="bar" aria-hidden="true"></span>
-      </button>
-      <ul class="nav-links">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="index.html#purpose" class="nav-link">Purpose</a></li>
-        <li><a href="index.html#materials" class="nav-link">Our Materials</a></li>
-        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-      </ul>
+    <!-- Navigation -->
+    <nav class="sticky-nav" aria-label="Main navigation">
+      <div class="nav-container">
+
+        <button
+          class="mobile-menu-toggle"
+          type="button"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="event-navigation"
+        >
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+
+        <ul class="nav-links" id="event-navigation">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html#purpose" class="nav-link">Purpose</a></li>
+          <li><a href="index.html#materials" class="nav-link">Our Materials</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+      </div>
+    </nav>
+
+    <!-- Events Timeline -->
+    <section
+      class="timeline-section fade-section"
+      aria-label="MRA International events timeline"
+    >
+      <div class="timeline-container">
+
+        <!-- Event 1: ReMA 2026 -->
+        <article class="timeline-item" data-event="1">
+          <div class="timeline-marker" aria-hidden="true"></div>
+
+          <div class="timeline-content">
+            <div class="timeline-date">
+              <time datetime="2026-04-13">April 13–16, 2026</time>
+              <br>
+              <span>Mandalay Bay, Las Vegas, Nevada, U.S.A.</span>
+            </div>
+
+            <h3>ReMA 2026 Convention &amp; Exposition</h3>
+
+            <p>
+              Exploring developments in recycled materials, global commodity
+              markets, recycling technology, and the circular economy.
+            </p>
+
+            <button
+              class="view-details-btn"
+              type="button"
+              data-event="1"
+              aria-haspopup="dialog"
+            >
+              View Details
+            </button>
+          </div>
+        </article>
+
+        <!-- Event 2: Plastics Recycling Conference 2026 -->
+        <article class="timeline-item" data-event="2">
+          <div class="timeline-marker" aria-hidden="true"></div>
+
+          <div class="timeline-content">
+            <div class="timeline-date">
+              <time datetime="2026-02-23">February 23–25, 2026</time>
+              <br>
+              <span>San Diego, California, U.S.A.</span>
+            </div>
+
+            <h3>Plastics Recycling Conference 2026</h3>
+
+            <p>
+              Examining plastics recovery, recycling infrastructure,
+              industry policy, and innovations in recycled materials.
+            </p>
+
+            <button
+              class="view-details-btn"
+              type="button"
+              data-event="2"
+              aria-haspopup="dialog"
+            >
+              View Details
+            </button>
+          </div>
+        </article>
+
+        <!-- Event 3: ReMA 2025 -->
+        <article class="timeline-item" data-event="3">
+          <div class="timeline-marker" aria-hidden="true"></div>
+
+          <div class="timeline-content">
+            <div class="timeline-date">
+              <time datetime="2025-05-12">May 12–15, 2025</time>
+              <br>
+              <span>San Diego, California, U.S.A.</span>
+            </div>
+
+            <h3>ReMA 2025 Convention &amp; Exposition</h3>
+
+            <p>
+              Learning about recycled commodity markets, international trade,
+              sustainability, and advances in recycling technology.
+            </p>
+
+            <button
+              class="view-details-btn"
+              type="button"
+              data-event="3"
+              aria-haspopup="dialog"
+            >
+              View Details
+            </button>
+          </div>
+        </article>
+
+        <!-- Event 4: Plastics Recycling Conference 2024 -->
+        <article class="timeline-item" data-event="4">
+          <div class="timeline-marker" aria-hidden="true"></div>
+
+          <div class="timeline-content">
+            <div class="timeline-date">
+              <time datetime="2024-03-25">March 25–27, 2024</time>
+              <br>
+              <span>Grapevine, Texas, U.S.A.</span>
+            </div>
+
+            <h3>Plastics Recycling Conference 2024</h3>
+
+            <p>
+              Reviewing the business, policy, infrastructure, and technology
+              shaping plastics recycling and material recovery.
+            </p>
+
+            <button
+              class="view-details-btn"
+              type="button"
+              data-event="4"
+              aria-haspopup="dialog"
+            >
+              View Details
+            </button>
+          </div>
+        </article>
+
+        <!-- Event 5: ISRI 2023 -->
+        <article class="timeline-item" data-event="5">
+          <div class="timeline-marker" aria-hidden="true"></div>
+
+          <div class="timeline-content">
+            <div class="timeline-date">
+              <time datetime="2023-04-17">April 17–20, 2023</time>
+              <br>
+              <span>Music City Center, Nashville, Tennessee, U.S.A.</span>
+            </div>
+
+            <h3>ISRI 2023 Convention &amp; Exposition</h3>
+
+            <p>
+              Exploring recycling industry trends, international market
+              developments, educational sessions, and professional networking.
+            </p>
+
+            <button
+              class="view-details-btn"
+              type="button"
+              data-event="5"
+              aria-haspopup="dialog"
+            >
+              View Details
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Event Details Modal -->
+    <div
+      class="event-modal"
+      id="eventModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+      aria-describedby="modalDescription"
+      tabindex="-1"
+    >
+      <div class="modal-content">
+
+        <button
+          class="close-modal"
+          type="button"
+          aria-label="Close event details"
+        >
+          &times;
+        </button>
+
+        <div class="modal-body">
+          <h2 id="modalTitle"></h2>
+
+          <div class="modal-date" id="modalDate"></div>
+
+          <div class="modal-description" id="modalDescription"></div>
+
+          <!-- Contact details are inserted by events.js -->
+          <div class="modal-gallery" id="modalGallery"></div>
+        </div>
+
+      </div>
     </div>
-  </nav>
 
-  <!-- Timeline Section -->
-  <section class="timeline-section fade-section">
-    <div class="timeline-container">
-
-      <!-- Event 1: ReMA 2026 -->
-      <div class="timeline-item" data-event="1">
-        <div class="timeline-marker"></div>
-        <div class="timeline-content">
-          <div class="timeline-date">April 14 - 16, 2026</div>
-          <h3>ReMA 2026 Convention & Exposition</h3>
-          <p>Engaging with visionaries driving the future of materials recycling.</p>
-          <button class="view-details-btn" data-event="1">View Details</button>
-        </div>
-      </div>
-
-      <!-- Event 2: Plastics Recycling Conference 2026 -->
-      <div class="timeline-item" data-event="2">
-        <div class="timeline-marker"></div>
-        <div class="timeline-content">
-          <div class="timeline-date">February 23 - 25, 2026</div>
-          <h3>Plastics Recycling Conference 2026</h3>
-          <p>Exploring next-generation solutions in plastics sustainability.</p>
-          <button class="view-details-btn" data-event="2">View Details</button>
-        </div>
-      </div>
-
-      <!-- Event 3: ReMA 2025 -->
-      <div class="timeline-item" data-event="3">
-        <div class="timeline-marker"></div>
-        <div class="timeline-content">
-          <div class="timeline-date">May 12 - 15, 2025</div>
-          <h3>ReMA 2025 Convention & Exposition</h3>
-          <p>Establishing connections with industry leading partners worldwide.</p>
-          <button class="view-details-btn" data-event="3">View Details</button>
-        </div>
-      </div>
-
-      <!-- Event 4: Plastics Recycling Conference 2024 -->
-      <div class="timeline-item" data-event="4">
-        <div class="timeline-marker"></div>
-        <div class="timeline-content">
-          <div class="timeline-date">March 25 - 27, 2024</div>
-          <h3>Plastics Recycling Conference 2024</h3>
-          <p>Shaping the world for a future free of plastics.</p>
-          <button class="view-details-btn" data-event="4">View Details</button>
-        </div>
-      </div>
-
-      <!-- Event 5: ISRI 2023 -->
-      <div class="timeline-item" data-event="5">
-        <div class="timeline-marker"></div>
-        <div class="timeline-content">
-          <div class="timeline-date">April 17 - 20, 2023</div>
-          <h3>ISRI 2023 Conference & Expo</h3>
-          <p>Record-setting major event for the recycling industry.</p>
-          <button class="view-details-btn" data-event="5">View Details</button>
-        </div>
-      </div>
-
-
-    </div>
-  </section>
-
-  <!-- Event Detail Modal -->
-  <div class="event-modal" id="eventModal">
-    <div class="modal-content">
-      <button class="close-modal">&times;</button>
-      <div class="modal-body">
-        <h2 id="modalTitle"></h2>
-        <div class="modal-date" id="modalDate"></div>
-        <div class="modal-description" id="modalDescription"></div>
-        <div class="modal-gallery" id="modalGallery"></div>
-      </div>
-    </div>
-  </div>
+  </main>
 
   <!-- Footer -->
   <footer>
     <div class="footer-content">
+
       <div class="footer-section">
         <h3>MRA International Limited</h3>
         <p>Advancing Recycling. Preserving Tomorrow.</p>
       </div>
+
       <div class="footer-section">
         <h4>Quick Links</h4>
         <ul>
@@ -154,22 +302,35 @@
           <li><a href="index.html#purpose">About Us</a></li>
           <li><a href="index.html#materials">Our Materials</a></li>
           <li><a href="index.html#contact">Contact</a></li>
-          <li><a href="events.html">Events Timeline</a></li>
+          <li><a href="events.html" aria-current="page">Events Timeline</a></li>
         </ul>
       </div>
+
       <div class="footer-section">
-        <h4>Contact Info</h4>
-        <p>Email: <a href="mailto:docs@mraintltd.com">docs@mraintltd.com</a></p>
-        <p>Phone: +1 (876) 391-6676</p>
-        <p>Address: 3A Haughton Avenue, Kingston, Jamaica</p>
+        <h4>Contact Information</h4>
+
+        <p>
+          Email:
+          <a href="mailto:mukesh@mraintltd.com">mukesh@mraintltd.com</a>
+        </p>
+
+        <p>
+          Phone:
+          <a href="tel:+18763916676">+1 (876) 391-6676</a>
+        </p>
+
+        <p>
+          Address: 8 St. Lucia Crescent, The Hub, Kingston, Jamaica
+        </p>
       </div>
+
     </div>
+
     <div class="footer-bottom">
       <p>&copy; 2026 MRA International Limited | All Rights Reserved</p>
     </div>
   </footer>
 
-  </main>
   <script src="events.js"></script>
 </body>
 
