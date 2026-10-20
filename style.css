@@ -1395,3 +1395,384 @@ button:focus-visible,
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ==========================================
+   MRA INTERNATIONAL — FIRE, EARTH & WATER
+   Add this block to the END of style.css
+   ========================================== */
+
+:root {
+  --fire: #E87532;
+  --fire-light: #F5A04D;
+  --fire-dark: #B84C26;
+
+  --earth: #174C38;
+  --earth-mid: #28734D;
+  --earth-light: #DCE8D5;
+
+  --water: #164E70;
+  --water-mid: #3285B5;
+  --water-light: #E3F0F7;
+
+  --page-bg: #F5F7F3;
+  --surface: #FFFFFF;
+  --text: #25352E;
+  --muted: #5D6D65;
+  --border: #DDE5DE;
+
+  --shadow: 0 12px 35px rgba(23, 76, 56, 0.10);
+  --shadow-hover: 0 20px 45px rgba(23, 76, 56, 0.17);
+}
+
+/* Main page */
+body {
+  background: var(--page-bg);
+  background-attachment: fixed;
+  color: var(--text);
+}
+
+/* Header: forest green with a subtle water-blue accent */
+header {
+  background:
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(50, 133, 181, 0.32),
+      transparent 35%
+    ),
+    linear-gradient(135deg, #103728 0%, #174C38 60%, #164E70 100%);
+  box-shadow: 0 8px 30px rgba(16, 55, 40, 0.18);
+}
+
+header p {
+  color: #F5A04D;
+}
+
+/* Navigation */
+nav {
+  background: rgba(23, 76, 56, 0.96);
+  box-shadow: 0 4px 18px rgba(23, 76, 56, 0.12);
+}
+
+nav.scrolled {
+  background: rgba(16, 55, 40, 0.98);
+  box-shadow: 0 5px 22px rgba(16, 55, 40, 0.2);
+}
+
+nav ul li a {
+  border-radius: 8px;
+  margin: 5px 2px;
+}
+
+nav ul li a:hover,
+nav ul li a:focus-visible {
+  background: var(--fire);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(232, 117, 50, 0.22);
+}
+
+/* Content sections */
+section {
+  background: var(--surface);
+  border: 1px solid rgba(23, 76, 56, 0.06);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+section h2 {
+  color: var(--earth);
+}
+
+section h2::after {
+  background: linear-gradient(
+    90deg,
+    var(--earth-mid),
+    var(--water-mid),
+    var(--fire)
+  );
+}
+
+/* Material cards */
+.material-card {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(23, 76, 56, 0.07);
+}
+
+.material-card:hover {
+  transform: translateY(-7px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--earth-mid);
+}
+
+.material-card h3 {
+  color: var(--earth);
+}
+
+.material-card p {
+  color: var(--muted);
+}
+
+.material-card-image::after {
+  background: rgba(23, 76, 56, 0.92);
+}
+
+.click-hint {
+  background: #F1F6F0;
+  border-color: rgba(40, 115, 77, 0.3);
+}
+
+.click-hint span {
+  color: var(--earth-mid);
+}
+
+.pulse-icon,
+.pulse-icon::after {
+  background-color: var(--earth-mid);
+}
+
+.material-card:hover .click-hint {
+  background: var(--earth-light);
+}
+
+.material-btn,
+.cta-button {
+  background: var(--fire);
+  border-color: var(--fire);
+  color: #FFFFFF;
+  border-radius: 8px;
+}
+
+.material-btn:hover,
+.cta-button:hover {
+  background: var(--fire-dark);
+  border-color: var(--fire-dark);
+  color: #FFFFFF;
+  box-shadow: 0 7px 18px rgba(184, 76, 38, 0.2);
+}
+
+.cta-button.secondary {
+  background: transparent;
+  border-color: var(--water-mid);
+  color: var(--water);
+}
+
+.cta-button.secondary:hover {
+  background: var(--water);
+  border-color: var(--water);
+  color: #FFFFFF;
+}
+
+.material-sub-lists h4 {
+  color: var(--earth-mid);
+}
+
+.materials-navigation {
+  background: var(--water-light);
+}
+
+.materials-navigation p {
+  color: var(--water);
+}
+
+.materials-navigation a {
+  color: var(--water);
+}
+
+.materials-navigation a:hover {
+  color: var(--fire-dark);
+}
+
+/* CEO image */
+.ceo-image {
+  border-color: var(--earth-mid);
+  box-shadow: 0 10px 28px rgba(23, 76, 56, 0.2);
+}
+
+.ceo-image:hover {
+  box-shadow: 0 14px 35px rgba(50, 133, 181, 0.25);
+}
+
+/* Contact section */
+.contact-section {
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(50, 133, 181, 0.3),
+      transparent 35%
+    ),
+    linear-gradient(135deg, #174C38, #103728);
+  border-color: transparent;
+}
+
+.contact-section h2 {
+  color: #FFFFFF;
+}
+
+.contact-section h2::after {
+  background: linear-gradient(90deg, var(--fire), var(--fire-light));
+}
+
+.contact-info p {
+  color: #F1F6F0;
+}
+
+.contact-info strong {
+  color: var(--fire-light);
+}
+
+.contact-info a,
+#contact-email {
+  color: #F5A04D;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contact-info a:hover,
+#contact-email:hover {
+  color: #FFFFFF;
+}
+
+/* Contact form */
+.contact-form {
+  background: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+}
+
+.contact-form h3,
+.form-group label {
+  color: var(--earth);
+}
+
+.form-group input,
+.form-group textarea {
+  border: 1px solid #D5DED7;
+  border-radius: 8px;
+  color: var(--text);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--water-mid);
+  box-shadow: 0 0 0 3px rgba(50, 133, 181, 0.16);
+}
+
+/* The form field has id="email"; keep typed text readable */
+#email {
+  color: var(--text);
+}
+
+.submit-btn {
+  background: var(--fire);
+  color: #FFFFFF;
+  border-radius: 8px;
+}
+
+.submit-btn:hover {
+  background: var(--fire-dark);
+}
+
+/* Footer */
+footer {
+  background: #102F24;
+  box-shadow: 0 -5px 22px rgba(16, 47, 36, 0.1);
+  border-top: 3px solid var(--earth-mid);
+}
+
+.footer-section h3 {
+  color: #FFFFFF;
+}
+
+.footer-section h4 {
+  color: var(--fire-light);
+}
+
+.footer-section a {
+  color: #DCE8D5;
+}
+
+.footer-section a:hover {
+  color: #F5A04D;
+}
+
+.footer-bottom {
+  border-top-color: rgba(220, 232, 213, 0.2);
+}
+
+/* Materials slideshow */
+.modal {
+  background-color: rgba(12, 35, 27, 0.88);
+}
+
+.modal-content {
+  border: 1px solid var(--border);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+.close-modal {
+  color: var(--earth);
+}
+
+.close-modal:hover {
+  color: var(--fire-dark);
+}
+
+.slide-info h2 {
+  color: var(--earth);
+}
+
+.slide-info p {
+  color: var(--muted);
+}
+
+.slide-btn:hover {
+  background: var(--water);
+  color: #FFFFFF;
+}
+
+.dot.active {
+  background-color: var(--fire);
+}
+
+/* Keyboard accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--fire);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  background: var(--earth);
+  color: #FFFFFF;
+}
+
+/* Mobile navigation */
+@media (max-width: 768px) {
+  nav ul {
+    background: rgba(16, 47, 36, 0.99);
+  }
+
+  nav ul li a {
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .mobile-menu-toggle .bar {
+    background-color: #FFFFFF;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
