@@ -148,13 +148,18 @@ header p {
 
 .header-logo {
   display: block;
-  width: auto;
-  max-width: min(220px, 65vw);
+  width: 240px;
+  max-width: 80%;
   height: auto;
-  max-height: 190px;
   object-fit: contain;
-  margin: 2rem auto 0;
-  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.16));
+  margin: 20px auto 0;
+}
+
+@media (max-width: 600px) {
+  .header-logo {
+    width: 190px;
+    max-width: 75%;
+  }
 }
 
 @keyframes atmosphere {
