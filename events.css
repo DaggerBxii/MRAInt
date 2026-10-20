@@ -881,3 +881,145 @@ footer {
     border-radius: 12px;
   }
 }
+/* ===== MRA Nature Theme: Events Timeline ===== */
+
+:root {
+    --fire: #E87532;
+    --fire-dark: #B84C26;
+    --earth: #174C38;
+    --earth-mid: #28734D;
+    --water: #164E70;
+    --water-mid: #3285B5;
+    --page-bg: #F5F7F3;
+    --border: #DDE5DE;
+    --muted: #5D6D65;
+}
+
+/* Timeline section and background */
+.timeline-section {
+    background: var(--page-bg) !important;
+}
+
+/* Vertical line down the timeline */
+.timeline-container::before {
+    background: linear-gradient(
+        to bottom,
+        var(--fire),
+        var(--earth-mid) 50%,
+        var(--water-mid)
+    ) !important;
+}
+
+/* Timeline dots */
+.timeline-marker {
+    background: var(--fire) !important;
+    border: 4px solid #fff !important;
+    box-shadow: 0 0 0 3px var(--earth-mid) !important;
+}
+
+/* Event cards */
+.timeline-content {
+    background: #fff !important;
+    color: #25352E !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 28px rgba(23, 76, 56, 0.10) !important;
+}
+
+.timeline-content h3 {
+    color: var(--earth) !important;
+}
+
+.timeline-content p {
+    color: var(--muted) !important;
+}
+
+.timeline-date {
+    color: var(--water) !important;
+    font-weight: 700;
+}
+
+/* View Details buttons */
+.view-details-btn {
+    background: var(--fire) !important;
+    border: 2px solid var(--fire) !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+}
+
+.view-details-btn:hover {
+    background: var(--fire-dark) !important;
+    border-color: var(--fire-dark) !important;
+    color: #fff !important;
+}
+
+/* Event pop-up */
+.event-modal {
+    background: rgba(12, 35, 27, 0.88) !important;
+}
+
+.event-modal .modal-content {
+    background: #fff !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 18px !important;
+}
+
+#modalTitle {
+    color: var(--earth) !important;
+}
+
+.modal-date {
+    color: var(--water) !important;
+}
+
+.modal-description {
+    color: #394A41 !important;
+}
+
+.modal-contact {
+    background: #F1F6F0 !important;
+    border-left: 4px solid var(--earth-mid) !important;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.modal-contact a {
+    color: var(--water) !important;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 768px) {
+    .timeline-content {
+        border-radius: 12px !important;
+    }
+}
+/* ===== Events Page Footer: Nature Theme ===== */
+
+footer {
+    background: #102F24 !important;
+    color: #F1F6F0 !important;
+    border-top: 3px solid #28734D !important;
+}
+
+footer h3,
+footer h4 {
+    color: #F5A04D !important;
+}
+
+footer p,
+footer li {
+    color: #DCE8D5 !important;
+}
+
+footer a {
+    color: #DCE8D5 !important;
+}
+
+footer a:hover {
+    color: #F5A04D !important;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(220, 232, 213, 0.25) !important;
+    color: #DCE8D5 !important;
+}
