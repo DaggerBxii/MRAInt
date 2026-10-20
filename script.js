@@ -1,61 +1,67 @@
 // Smooth scroll for navigation links
 document.querySelectorAll(".nav-link").forEach((link) => {
   link.addEventListener("click", function (e) {
-    const targetId = this.getAttribute("href")
+    const targetId = this.getAttribute("href");
 
-    if (targetId.startsWith("#")) {
-      e.preventDefault()
-      const targetSection = document.querySelector(targetId)
+    if (targetId && targetId.startsWith("#")) {
+      e.preventDefault();
+      const targetSection = document.querySelector(targetId);
 
       if (targetSection) {
         targetSection.scrollIntoView({
           behavior: "smooth",
           block: "start",
-        })
+        });
       }
     }
-  })
-})
+  });
+});
 
 // Intersection Observer for fade-in animations
 const observerOptions = {
   threshold: 0.1,
   rootMargin: "0px 0px -20px 0px",
+};
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll(".fade-section").forEach((section) => {
+    observer.observe(section);
+  });
+} else {
+  document.querySelectorAll(".fade-section").forEach((section) => {
+    section.classList.add("visible");
+  });
 }
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible")
-    }
-  })
-}, observerOptions)
-
-document.querySelectorAll(".fade-section").forEach((section) => {
-  observer.observe(section)
-})
 
 // Parallax header and nav scroll effect
 window.addEventListener("scroll", () => {
-  const scrolled = window.pageYOffset
-  const header = document.querySelector("header")
-  const nav = document.querySelector("nav")
+  const scrolled = window.pageYOffset;
+  const header = document.querySelector("header");
+  const nav = document.querySelector("nav");
 
   if (header) {
-    header.style.transform = `translateY(${scrolled * 0.5}px)`
-    header.style.opacity = 1 - scrolled / 500
+    header.style.transform = `translateY(${scrolled * 0.5}px)`;
+    header.style.opacity = Math.max(0, 1 - scrolled / 500);
   }
 
   if (nav) {
     if (scrolled > 100) {
-      nav.classList.add("scrolled")
+      nav.classList.add("scrolled");
     } else {
-      nav.classList.remove("scrolled")
+      nav.classList.remove("scrolled");
     }
   }
-})
+});
 
-// Materials Slideshow Data - COMPREHENSIVE LIST
+// Materials Slideshow Data
 const materialsData = {
   "Paper Recycling": [
     {
@@ -148,24 +154,22 @@ let currentSlidesData = [];
 
 function openSlideshow(categoryName) {
   const cleanCategoryName = categoryName.trim();
-  console.log("Opening slideshow for:", cleanCategoryName);
 
-  // Robust case-insensitive matching
   const matchingKey = Object.keys(materialsData).find(
     key => key.toLowerCase() === cleanCategoryName.toLowerCase()
   );
 
   currentSlidesData = materialsData[matchingKey || cleanCategoryName] || [];
 
-  if (currentSlidesData.length === 0) {
-    console.error("No data found for category:", cleanCategoryName);
+  if (currentSlidesData.length === 0 || !modal || !modalContent || !dotsContainer) {
+    console.error("No slideshow data found for category:", cleanCategoryName);
     return;
   }
 
   currentSlideIndex = 0;
   renderSlides();
   modal.classList.add("visible");
-  document.body.style.overflow = "hidden"; // Prevent scroll
+  document.body.style.overflow = "hidden";
 }
 
 function renderSlides() {
@@ -175,85 +179,143 @@ function renderSlides() {
   currentSlidesData.forEach((slide, index) => {
     const slideEl = document.createElement("div");
     slideEl.className = `slide ${index === 0 ? "active" : ""}`;
-    slideEl.innerHTML = `
-      <div class="slide-image">
-        <img src="${slide.image}" alt="${slide.name}">
-      </div>
-      <div class="slide-info">
-        <h2>${slide.name}</h2>
-        <p>${slide.description}</p>
-      </div>
-    `;
+
+    const imageContainer = document.createElement("div");
+    imageContainer.className = "slide-image";
+
+    const img = document.createElement("img");
+    img.src = slide.image;
+    img.alt = slide.name;
+    imageContainer.appendChild(img);
+
+    const info = document.createElement("div");
+    info.className = "slide-info";
+
+    const heading = document.createElement("h2");
+    heading.textContent = slide.name;
+
+    const description = document.createElement("p");
+    description.textContent = slide.description;
+
+    info.appendChild(heading);
+    info.appendChild(description);
+    slideEl.appendChild(imageContainer);
+    slideEl.appendChild(info);
     modalContent.appendChild(slideEl);
 
     const dot = document.createElement("span");
     dot.className = `dot ${index === 0 ? "active" : ""}`;
-    dot.onclick = () => showSlide(index);
+    dot.setAttribute("role", "button");
+    dot.setAttribute("tabindex", "0");
+    dot.setAttribute("aria-label", `Show slide ${index + 1}`);
+
+    dot.addEventListener("click", () => showSlide(index));
+    dot.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        showSlide(index);
+      }
+    });
+
     dotsContainer.appendChild(dot);
   });
 }
 
 function showSlide(index) {
-  const slides = document.querySelectorAll(".slide");
-  const dots = document.querySelectorAll(".dot");
+  if (!modalContent || !dotsContainer) return;
+
+  const slides = modalContent.querySelectorAll(".slide");
+  const dots = dotsContainer.querySelectorAll(".dot");
+
+  if (slides.length === 0) return;
 
   if (index >= slides.length) index = 0;
   if (index < 0) index = slides.length - 1;
 
-  slides.forEach(s => s.classList.remove("active"));
-  dots.forEach(d => d.classList.remove("active"));
+  slides.forEach(slide => slide.classList.remove("active"));
+  dots.forEach(dot => dot.classList.remove("active"));
 
   slides[index].classList.add("active");
   dots[index].classList.add("active");
   currentSlideIndex = index;
 }
 
-prevBtn.onclick = () => showSlide(currentSlideIndex - 1);
-nextBtn.onclick = () => showSlide(currentSlideIndex + 1);
+if (prevBtn) {
+  prevBtn.addEventListener("click", () => showSlide(currentSlideIndex - 1));
+}
 
-closeBtn.onclick = function () {
-  modal.classList.remove("visible");
-  document.body.style.overflow = "auto";
-};
+if (nextBtn) {
+  nextBtn.addEventListener("click", () => showSlide(currentSlideIndex + 1));
+}
 
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.classList.remove("visible");
-    document.body.style.overflow = "auto";
-  }
-};
+function closeSlideshow() {
+  if (modal) modal.classList.remove("visible");
+  document.body.style.overflow = "";
+}
 
-// Handle Card Clicks
+if (closeBtn) {
+  closeBtn.addEventListener("click", closeSlideshow);
+}
+
+if (modal) {
+  window.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      closeSlideshow();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && modal.classList.contains("visible")) {
+      closeSlideshow();
+    }
+  });
+}
+
+// Handle Material Card Clicks
 document.querySelectorAll(".material-card").forEach(card => {
   card.style.cursor = "pointer";
+
   card.addEventListener("click", () => {
     const titleEl = card.querySelector("h3");
     const title = titleEl ? titleEl.innerText : "";
     openSlideshow(title);
   });
-});
 
-// Prevent buttons from triggering the slideshow
-document.querySelectorAll(".material-btn").forEach(btn => {
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
+  card.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      if (event.target.closest("a, button")) return;
+      event.preventDefault();
+      const titleEl = card.querySelector("h3");
+      if (titleEl) openSlideshow(titleEl.innerText);
+    }
   });
 });
 
-// CEO image interaction (from original script)
-const ceoImage = document.querySelector(".ceo-image")
+// Prevent material buttons from triggering the slideshow
+document.querySelectorAll(".material-btn").forEach(btn => {
+  btn.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+});
+
+// CEO image interaction
+const ceoImage = document.querySelector(".ceo-image");
+
 if (ceoImage) {
-  ceoImage.addEventListener("mousemove", (e) => {
-    const rect = ceoImage.getBoundingClientRect()
-    const x = e.clientX - rect.left - rect.width / 2
-    const y = e.clientY - rect.top - rect.height / 2
-    const rotateX = y / 20
-    const rotateY = -x / 20
-    ceoImage.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`
-  })
+  ceoImage.addEventListener("mousemove", (event) => {
+    const rect = ceoImage.getBoundingClientRect();
+    const x = event.clientX - rect.left - rect.width / 2;
+    const y = event.clientY - rect.top - rect.height / 2;
+    const rotateX = y / 20;
+    const rotateY = -x / 20;
+
+    ceoImage.style.transform =
+      `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+  });
+
   ceoImage.addEventListener("mouseleave", () => {
-    ceoImage.style.transform = "rotateX(0) rotateY(0) scale(1)"
-  })
+    ceoImage.style.transform = "rotateX(0) rotateY(0) scale(1)";
+  });
 }
 
 // Mobile Menu Toggle Logic
@@ -266,61 +328,75 @@ if (mobileMenuToggle && navLinksContainer) {
     mobileMenuToggle.classList.toggle("active");
     navLinksContainer.classList.toggle("active");
     document.body.classList.toggle("menu-open");
-    
-    // Update ARIA attributes
+
     const isExpanded = mobileMenuToggle.classList.contains("active");
-    mobileMenuToggle.setAttribute("aria-expanded", isExpanded);
+    mobileMenuToggle.setAttribute("aria-expanded", String(isExpanded));
   });
 
-  // Close menu when a link is clicked
   navLinks.forEach(link => {
     link.addEventListener("click", () => {
       mobileMenuToggle.classList.remove("active");
       navLinksContainer.classList.remove("active");
       document.body.classList.remove("menu-open");
-      
-      // Update ARIA attributes
-      mobileMenuToggle.setAttribute("aria-expanded", false);
+      mobileMenuToggle.setAttribute("aria-expanded", "false");
     });
   });
 
-  // Close menu when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!navLinksContainer.contains(e.target) && !mobileMenuToggle.contains(e.target) && navLinksContainer.classList.contains("active")) {
+  document.addEventListener("click", (event) => {
+    if (
+      !navLinksContainer.contains(event.target) &&
+      !mobileMenuToggle.contains(event.target) &&
+      navLinksContainer.classList.contains("active")
+    ) {
       mobileMenuToggle.classList.remove("active");
       navLinksContainer.classList.remove("active");
       document.body.classList.remove("menu-open");
-      
-      // Update ARIA attributes
-      mobileMenuToggle.setAttribute("aria-expanded", false);
+      mobileMenuToggle.setAttribute("aria-expanded", "false");
     }
   });
 }
 
 // Contact Form Handling
-const contactForm = document.getElementById('contactForm');
+// Opens the visitor's email app with the message prepared.
+// The visitor must press Send in their email application.
+const contactForm = document.getElementById("contactForm");
+
 if (contactForm) {
-  contactForm.addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent default form submission
-    
-    // Get form values
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const subject = document.getElementById('subject').value;
-    const message = document.getElementById('message').value;
-    
-    // Basic validation
+  contactForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const subject = document.getElementById("subject").value.trim();
+    const message = document.getElementById("message").value.trim();
+
     if (!name || !email || !message) {
-      alert('Please fill in all required fields.');
+      alert("Please fill in all required fields.");
       return;
     }
-    
-    // In a real implementation, you would send the data to a server here
-    // For now, we'll just show a success message
-    alert(`Thank you ${name}! Your message has been sent. We'll get back to you soon.`);
-    
-    // Reset the form
-    contactForm.reset();
+
+    // Basic browser email validation
+    const emailInput = document.getElementById("email");
+    if (emailInput && !emailInput.checkValidity()) {
+      emailInput.reportValidity();
+      return;
+    }
+
+    const recipient = "mukesh@mraintltd.com";
+    const emailSubject = subject || `Website inquiry from ${name}`;
+
+    const emailBody =
+      `Name: ${name}\n` +
+      `Email: ${email}\n\n` +
+      `Message:\n${message}`;
+
+    const mailtoLink =
+      `mailto:${recipient}` +
+      `?subject=${encodeURIComponent(emailSubject)}` +
+      `&body=${encodeURIComponent(emailBody)}`;
+
+    // Open the visitor's default email application
+    window.location.href = mailtoLink;
   });
 }
 
